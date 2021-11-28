@@ -1,0 +1,16 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "askForPassword": true,
+      "driver": "MySQL",
+      "name": "connection",
+      "connectString": "mysql://doadmin:llIm8ilLDhcbvhu7@db-mysql-fra1-90692-do-user-10333451-0.b.db.ondigitalocean.com:25060/seatingsDB?ssl-mode=REQUIRED"
+    }
+  ]
+}
