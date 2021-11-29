@@ -11,6 +11,10 @@ app.use(cors());
 
 app.use('/v1/auth/', auth);
 
+app.get('/', (req, res) => {
+  res.send({ msg: 'Success' });
+});
+
 app.all('*', (req, res) => {
   res.status(400).send({ err: 'Page not found' });
 });
