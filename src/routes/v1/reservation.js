@@ -21,4 +21,17 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  const query = `SELECT workplaceid, reg_timestamp from reservation
+  `;
+  try {
+    const con = await mysql.createConnection(dbConfig);
+    const [data] = await con.execute(query);
+    await con.end();
+    return res.send(data);
+  } catch (err) {
+    return res.status(500).send({ err: 'error, please try again!' });
+  }
+});
+
 module.exports = router;
