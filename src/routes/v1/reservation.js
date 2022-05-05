@@ -23,8 +23,10 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
-  const query = `SELECT workplaceid, res_day, user_name from reservation
+router.get('/:data?', async (req, res) => {
+  const query = `SELECT workplaceid, res_day, user_name from reservation ${
+    req.params.data && `WHERE res_day = ${req.params.data}`
+  }
   `;
   try {
     const con = await mysql.createConnection(dbConfig);
