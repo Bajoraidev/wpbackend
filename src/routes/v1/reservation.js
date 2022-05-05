@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  const query = `SELECT user_id, workplaceid, reg_timestamp, res_day, user_name from reservation
+  const query = `SELECT workplaceid, res_day, user_name from reservation
   `;
   try {
     const con = await mysql.createConnection(dbConfig);
