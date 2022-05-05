@@ -10,9 +10,11 @@ router.post('/', async (req, res) => {
   try {
     const con = await mysql.createConnection(dbConfig);
     const [data] = await con.execute(
-      `INSERT INTO reservation (workplaceid, res_day) VALUES (${mysql.escape(
-        req.body.workplaceid,
-      )}, ${mysql.escape(req.body.res_day)})`,
+      `INSERT INTO reservation (user_id, workplaceid, res_day) VALUES (${mysql.escape(
+        req.body.user_id,
+      )}, ${mysql.escape(req.body.workplaceid)}, ${mysql.escape(
+        req.body.res_day,
+      )})`,
     );
     await con.end();
     return res.send(data);
