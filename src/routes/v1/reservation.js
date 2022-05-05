@@ -10,9 +10,9 @@ router.post('/', async (req, res) => {
   try {
     const con = await mysql.createConnection(dbConfig);
     const [data] = await con.execute(
-      `INSERT INTO reservation (workplaceid) VALUES (${mysql.escape(
+      `INSERT INTO reservation (workplaceid, res_day) VALUES (${mysql.escape(
         req.body.workplaceid,
-      )})`,
+      )}, ${mysql.escape(req.body.res_day)})`,
     );
     await con.end();
     return res.send(data);
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  const query = `SELECT workplaceid, reg_timestamp from reservation
+  const query = `SELECT user_id, workplaceid, reg_timestamp, res_day from reservation
   `;
   try {
     const con = await mysql.createConnection(dbConfig);
