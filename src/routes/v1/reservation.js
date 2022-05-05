@@ -38,4 +38,17 @@ router.get('/:data?', async (req, res) => {
   }
 });
 
+router.get('/list', async (req, res) => {
+  // eslint-disable-next-line quotes
+  const query = `SELECT DISTINCT workplaceid from reservation `;
+  try {
+    const con = await mysql.createConnection(dbConfig);
+    const [data] = await con.execute(query);
+    await con.end();
+    return res.send(data);
+  } catch (err) {
+    return res.status(500).send({ err: 'error, please try again!' });
+  }
+});
+
 module.exports = router;
