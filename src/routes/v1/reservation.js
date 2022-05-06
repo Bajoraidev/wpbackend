@@ -70,7 +70,7 @@ router.get('/wp/:wp?', async (req, res) => {
   }
 });
 
-router.get('/wp/data/:wp:data', async (req, res) => {
+router.get('/wp/data/:wp/:data', async (req, res) => {
   const query = `
   SELECT workplaceid from reservation
    ${`WHERE res_day = '${req.params.data}' and wp='${req.params.wp}'`}
