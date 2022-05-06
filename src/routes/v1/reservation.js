@@ -70,4 +70,19 @@ router.get('/wp/:wp?', async (req, res) => {
   }
 });
 
+router.get('/wp/data/:wp:data', async (req, res) => {
+  const query = `
+  SELECT workplaceid from reservation
+   ${`WHERE res_day = '${req.params.data}' and wp='${req.params.wp}'`}
+  `;
+  try {
+    const con = await mysql.createConnection(dbConfig);
+    const [data] = await con.execute(query);
+    await con.end();
+    return res.send(data);
+  } catch (err) {
+    return res.status(500).send({ err: 'error, please try again!' });
+  }
+});
+
 module.exports = router;
