@@ -38,9 +38,28 @@ router.get('/:data?', async (req, res) => {
   }
 });
 
-router.get('/list', async (req, res) => {
-  // eslint-disable-next-line quotes
-  const query = `SELECT DISTINCT workplaceid from reservation `;
+/*
+router.get('/list/:data?', async (req, res) => {
+  const query = `SELECT distinct workplaceid from reservation ${
+    req.params.data && `WHERE res_day = '${req.params.data}'`
+  }
+  `;
+  try {
+    const con = await mysql.createConnection(dbConfig);
+    const [data] = await con.execute(query);
+    await con.end();
+    return res.send(data);
+  } catch (err) {
+    return res.status(500).send({ err: 'error, please try again!' });
+  }
+});
+*/
+
+router.get('/:wp?', async (req, res) => {
+  const query = `SELECT workplaceid from reservation ${
+    req.params.data && `WHERE workplaceid = '${req.params.wp}'`
+  }
+  `;
   try {
     const con = await mysql.createConnection(dbConfig);
     const [data] = await con.execute(query);
