@@ -56,7 +56,7 @@ router.get('/list/:data?', async (req, res) => {
 */
 
 router.get('/wp/:wp?', async (req, res) => {
-  const query = `SELECT workplaceid, res_day, user_name from reservation ${
+  const query = `SELECT workplaceid from reservation ${
     req.params.data && `WHERE workplaceid = '${req.params.wp}'`
   }
   `;
